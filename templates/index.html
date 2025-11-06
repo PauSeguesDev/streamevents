@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    StreamEvents
+{% endblock %}
+
+{% block content %}
+
+    <div class="container py-5">
+        <div class="text-center">
+            <h1 class="fw-bold mb-3">🎬 StreamEvents</h1>
+            <p class="lead mb-4">Benvingut/da al projecte de <strong>Pau Segués Vitutia</strong></p>
+
+            <div class="d-flex justify-content-center gap-3">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'users:profile' %}" class="btn btn-primary">Perfil</a>
+                    <a href="{% url 'users:logout' %}" class="btn btn-outline-primary">Tancar sessió</a>
+                {% else %}
+                    <a href="{% url 'users:login' %}" class="btn btn-primary">Inicia sessió</a>
+                    <a href="{% url 'users:register' %}" class="btn btn-outline-primary">Registra’t</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

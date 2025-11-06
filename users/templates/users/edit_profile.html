@@ -1,0 +1,41 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container d-flex align-items-center justify-content-center mt-5">
+    <div class="row justify-content-center w-100">
+        <div class="col-md-6 col-lg-5 bg-light text-dark rounded-4 shadow p-4">
+            
+            <h2 class="mb-4 text-center">{{ title }}</h2>
+
+            <form method="POST" enctype="multipart/form-data" novalidate class="text-center">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="mb-3">
+                        <label for="{{ field.id_for_label }}" class="form-label d-block">{{ field.label }}</label>
+                        <div class="w-75 mx-auto">
+                            {{ field }}
+                        </div>
+                        {% if field.errors %}
+                            <div class="text-danger small mt-1">
+                                {{ field.errors|striptags }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-primary w-75 mt-3">Guardar canvis</button>
+            </form>
+
+            <div class="text-center mt-3">
+                <a href="{% url 'users:profile' %}" class="text-primary fw-semibold text-decoration-none">
+                    Tornar al perfil
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

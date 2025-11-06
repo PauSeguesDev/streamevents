@@ -84,7 +84,7 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'  # MOD: Afegit slash inicial per consistència
-# STATICFILES_DIRS = [BASE_DIR / 'static']  # MOD (opcional si tens carpeta pròpia)
+STATICFILES_DIRS = [BASE_DIR / "static"]  # MOD (opcional si tens carpeta pròpia)
 # STATIC_ROOT = BASE_DIR / 'staticfiles'  # MOD (per desplegament)
 
 MEDIA_URL = '/media/'  # MOD: Suport fitxers pujats
