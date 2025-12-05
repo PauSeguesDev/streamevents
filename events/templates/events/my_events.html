@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Els Meus Esdeveniments - StreamEvents{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12 d-flex justify-content-between align-items-center">
+        <h1 class="display-5">Els Meus Esdeveniments</h1>
+        <a href="{% url 'events:event_create' %}" class="btn btn-success">
+            <i class="bi bi-plus-lg"></i> Nou Esdeveniment
+        </a>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body text-center">
+                <h3 class="display-6">{{ object_list.count }}</h3>
+                <div>Total Esdeveniments</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        {% if object_list %}
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Esdeveniment</th>
+                        <th>Categoria</th>
+                        <th>Data</th>
+                        <th>Estat</th>
+                        <th>Accions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for event in object_list %}
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                {% if event.thumbnail %}
+                                <img src="{{ event.thumbnail.url }}" class="rounded me-3" width="50" height="50"
+                                    style="object-fit: cover;">
+                                {% else %}
+                                <div class="rounded me-3 bg-secondary d-flex align-items-center justify-content-center text-white"
+                                    style="width: 50px; height: 50px;">
+                                    📷
+                                </div>
+                                {% endif %}
+                                <a href="{{ event.get_absolute_url }}" class="text-decoration-none fw-bold text-dark">
+                                    {{ event.title }}
+                                </a>
+                            </div>
+                        </td>
+                        <td><span class="badge bg-light text-dark border">{{ event.get_category_display }}</span></td>
+                        <td>
+                            <div>{{ event.scheduled_date|date:"d/m/Y" }}</div>
+                            <small class="text-muted">{{ event.scheduled_date|date:"H:i" }}</small>
+                        </td>
+                        <td>
+                            {% if event.is_live %}
+                            <span class="badge bg-danger">En Directe</span>
+                            {% elif event.status == 'scheduled' %}
+                            <span class="badge bg-success">Programat</span>
+                            {% elif event.status == 'finished' %}
+                            <span class="badge bg-secondary">Finalitzat</span>
+                            {% else %}
+                            <span class="badge bg-dark">Cancel·lat</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <a href="{{ event.get_absolute_url }}" class="btn btn-outline-secondary" title="Veure">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a href="{% url 'events:event_update' event.pk %}" class="btn btn-outline-primary"
+                                    title="Editar">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a href="{% url 'events:event_delete' event.pk %}" class="btn btn-outline-danger"
+                                    title="Eliminar">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="text-center py-5">
+            <p class="h4 text-muted mb-3">Encara no has creat cap esdeveniment.</p>
+            <a href="{% url 'events:event_create' %}" class="btn btn-primary">Comença ara!</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{% if form.instance.pk %}Editar{% else %}Nou{% endif %} Esdeveniment - StreamEvents{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h2 class="h4 mb-0">{% if form.instance.pk %}Editar{% else %}Crear Nou{% endif %} Esdeveniment</h2>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {% for error in form.non_field_errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <div class="mb-3">
+                        <label for="{{ form.title.id_for_label }}" class="form-label">Títol *</label>
+                        {{ form.title }}
+                        {% if form.title.errors %}
+                        <div class="invalid-feedback d-block">{{ form.title.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.description.id_for_label }}" class="form-label">Descripció *</label>
+                        {{ form.description }}
+                        {% if form.description.errors %}
+                        <div class="invalid-feedback d-block">{{ form.description.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.category.id_for_label }}" class="form-label">Categoria *</label>
+                            {{ form.category }}
+                            {% if form.category.errors %}
+                            <div class="invalid-feedback d-block">{{ form.category.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.status.id_for_label }}" class="form-label">Estat *</label>
+                            {{ form.status }}
+                            {% if form.status.errors %}
+                            <div class="invalid-feedback d-block">{{ form.status.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.scheduled_date.id_for_label }}" class="form-label">Data i Hora *</label>
+                            {{ form.scheduled_date }}
+                            {% if form.scheduled_date.errors %}
+                            <div class="invalid-feedback d-block">{{ form.scheduled_date.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.max_viewers.id_for_label }}" class="form-label">Aforament Màxim</label>
+                            {{ form.max_viewers }}
+                            {% if form.max_viewers.errors %}
+                            <div class="invalid-feedback d-block">{{ form.max_viewers.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.stream_url.id_for_label }}" class="form-label">URL del Stream / Demo</label>
+                        {{ form.stream_url }}
+                        <div class="form-text">Suporta enllaços de YouTube, Twitch, etc.</div>
+                        {% if form.stream_url.errors %}
+                        <div class="invalid-feedback d-block">{{ form.stream_url.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.thumbnail.id_for_label }}" class="form-label">Imatge de Portada</label>
+                        {{ form.thumbnail }}
+                        {% if form.thumbnail.errors %}
+                        <div class="invalid-feedback d-block">{{ form.thumbnail.errors.0 }}</div>
+                        {% endif %}
+
+                        <div id="thumbnail-preview" class="mt-2 {% if not form.instance.thumbnail %}d-none{% endif %}">
+                            <img src="{% if form.instance.thumbnail %}{{ form.instance.thumbnail.url }}{% endif %}"
+                                alt="Preview" class="img-thumbnail" style="max-height: 200px;">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.tags.id_for_label }}" class="form-label">Etiquetes</label>
+                        {{ form.tags }}
+                        <div class="form-text">Separades per comes (ex: gaming, torneig, final)</div>
+                        {% if form.tags.errors %}
+                        <div class="invalid-feedback d-block">{{ form.tags.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="d-flex justify-content-end gap-2 mt-4">
+                        <a href="{% if form.instance.pk %}{% url 'events:event_detail' form.instance.pk %}{% else %}{% url 'events:event_list' %}{% endif %}"
+                            class="btn btn-secondary">Cancel·lar</a>
+                        <button type="submit" class="btn btn-primary">
+                            {% if form.instance.pk %}Guardar Canvis{% else %}Crear Esdeveniment{% endif %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Thumbnail preview logic
+    document.getElementById('{{ form.thumbnail.id_for_label }}').addEventListener('change', function (e) {
+        const preview = document.getElementById('thumbnail-preview');
+        const img = preview.querySelector('img');
+        const file = e.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                img.src = e.target.result;
+                preview.classList.remove('d-none');
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+{% endblock %}

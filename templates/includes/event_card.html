@@ -1,0 +1,57 @@
+<div class="card h-100 shadow-sm {% if event.is_featured %}border-warning{% endif %}">
+    {% if event.thumbnail %}
+    <img src="{{ event.thumbnail.url }}" class="card-img-top" alt="{{ event.title }}"
+        style="height: 200px; object-fit: cover;">
+    {% else %}
+    <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center text-white"
+        style="height: 200px;">
+        <span class="fs-1">📷</span>
+    </div>
+    {% endif %}
+
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+            <span class="badge bg-primary">{{ event.get_category_display }}</span>
+            {% if event.is_live %}
+            <span class="badge bg-danger animate-pulse">🔴 EN DIRECTE</span>
+            {% elif event.status == 'scheduled' %}
+            <span class="badge bg-success">📅 Programat</span>
+            {% elif event.status == 'finished' %}
+            <span class="badge bg-secondary">🏁 Finalitzat</span>
+            {% else %}
+            <span class="badge bg-dark">❌ Cancel·lat</span>
+            {% endif %}
+        </div>
+
+        <h5 class="card-title text-truncate" title="{{ event.title }}">
+            <a href="{{ event.get_absolute_url }}" class="text-decoration-none text-dark stretched-link">
+                {{ event.title }}
+            </a>
+        </h5>
+
+        <p class="card-text text-muted small mb-2">
+            <i class="bi bi-calendar-event"></i> {{ event.scheduled_date|date:"d M Y, H:i" }}
+        </p>
+
+        <div class="d-flex align-items-center mt-3">
+            <div class="small text-muted">
+                Per <strong>{{ event.creator.username }}</strong>
+            </div>
+        </div>
+    </div>
+
+    {% if show_actions %}
+    <div class="card-footer bg-transparent border-top-0">
+        <div class="d-flex justify-content-between">
+            <a href="{% url 'events:event_update' event.pk %}"
+                class="btn btn-sm btn-outline-primary position-relative z-2">
+                <i class="bi bi-pencil"></i> Editar
+            </a>
+            <a href="{% url 'events:event_delete' event.pk %}"
+                class="btn btn-sm btn-outline-danger position-relative z-2">
+                <i class="bi bi-trash"></i> Eliminar
+            </a>
+        </div>
+    </div>
+    {% endif %}
+</div>

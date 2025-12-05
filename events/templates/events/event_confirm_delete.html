@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar Esdeveniment - StreamEvents{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card border-danger shadow">
+            <div class="card-header bg-danger text-white">
+                <h3 class="h5 mb-0">Confirmar Eliminació</h3>
+            </div>
+            <div class="card-body text-center py-4">
+                <h4 class="mb-3">{{ event.title }}</h4>
+                <p class="lead mb-4">Estàs segur que vols eliminar aquest esdeveniment? Aquesta acció no es pot desfer.
+                </p>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="d-flex justify-content-center gap-2">
+                        <a href="{% url 'events:event_detail' event.pk %}" class="btn btn-secondary">Cancel·lar</a>
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

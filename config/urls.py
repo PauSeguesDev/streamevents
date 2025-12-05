@@ -21,8 +21,9 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/', include('users.urls', namespace='users')),
+    path('users/', include('users.urls', namespace='users')), # MOD: Inclou URLs de l'aplicació users 
     path('', views.home, name='home'),
+    path('events/', include('events.urls', namespace='events')), # MOD: Inclou URLs de l'aplicació events
 ]
 
 # Servir fitxers media durant el desenvolupament

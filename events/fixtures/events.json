@@ -1,0 +1,272 @@
+[
+  {
+    "model": "events.event",
+    "pk": 1,
+    "fields": {
+      "title": "Campionat de League of Legends",
+      "description": "La gran final del torneig d'hivern de LoL. Els millors equips s'enfronten per la glòria.",
+      "creator": 1,
+      "category": "gaming",
+      "scheduled_date": "2025-12-01T18:00:00Z",
+      "status": "live",
+      "max_viewers": 5000,
+      "is_featured": true,
+      "created_at": "2025-11-20T10:00:00Z",
+      "updated_at": "2025-12-01T18:00:00Z",
+      "tags": "esports, lol, gaming, tournament",
+      "stream_url": "https://www.youtube.com/watch?v=mD_t6_J5o9w"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 2,
+    "fields": {
+      "title": "Concert Acústic: Nit de Jazz",
+      "description": "Una vetllada relaxant amb els millors clàssics del jazz interpretats en directe.",
+      "creator": 48,
+      "category": "music",
+      "scheduled_date": "2025-12-02T20:00:00Z",
+      "status": "scheduled",
+      "max_viewers": 200,
+      "is_featured": true,
+      "created_at": "2025-11-25T15:30:00Z",
+      "updated_at": "2025-11-25T15:30:00Z",
+      "tags": "jazz, music, live, acoustic",
+      "stream_url": "https://www.youtube.com/watch?v=MY6hI9sz5LI"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 3,
+    "fields": {
+      "title": "Introducció a Python per a Principiants",
+      "description": "Aprèn els conceptes bàsics de Python en aquest taller interactiu.",
+      "creator": 58,
+      "category": "education",
+      "scheduled_date": "2025-11-30T10:00:00Z",
+      "status": "finished",
+      "max_viewers": 50,
+      "is_featured": false,
+      "created_at": "2025-11-15T09:00:00Z",
+      "updated_at": "2025-11-30T12:00:00Z",
+      "tags": "python, programming, education, coding",
+      "stream_url": "https://www.youtube.com/watch?v=_uQrJ0TkZlc"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 4,
+    "fields": {
+      "title": "Xerrada sobre el Futur de la IA",
+      "description": "Debat obert sobre com la Intel·ligència Artificial canviarà les nostres vides.",
+      "creator": 1,
+      "category": "talk",
+      "scheduled_date": "2025-12-05T17:00:00Z",
+      "status": "scheduled",
+      "max_viewers": 1000,
+      "is_featured": true,
+      "created_at": "2025-11-28T11:00:00Z",
+      "updated_at": "2025-11-28T11:00:00Z",
+      "tags": "ai, tech, talk, future",
+      "stream_url": "https://www.youtube.com/watch?v=aircAruvnKk"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 5,
+    "fields": {
+      "title": "Partit Benèfic de Futbol",
+      "description": "Partit amistós per recaptar fons per a la investigació mèdica.",
+      "creator": 48,
+      "category": "sports",
+      "scheduled_date": "2025-12-10T16:00:00Z",
+      "status": "scheduled",
+      "max_viewers": 3000,
+      "is_featured": false,
+      "created_at": "2025-11-10T14:00:00Z",
+      "updated_at": "2025-11-10T14:00:00Z",
+      "tags": "football, sports, charity, soccer",
+      "stream_url": "https://www.youtube.com/watch?v=vnH4YjWjk3g"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 6,
+    "fields": {
+      "title": "Speedrun de Minecraft",
+      "description": "Intentant batre el rècord mundial en directe.",
+      "creator": 58,
+      "category": "gaming",
+      "scheduled_date": "2025-12-01T19:00:00Z",
+      "status": "live",
+      "max_viewers": 1500,
+      "is_featured": false,
+      "created_at": "2025-12-01T10:00:00Z",
+      "updated_at": "2025-12-01T19:00:00Z",
+      "tags": "minecraft, speedrun, gaming",
+      "stream_url": "https://www.youtube.com/watch?v=0sxk9vO4qg0"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 7,
+    "fields": {
+      "title": "Taller de Pintura a l'Oli",
+      "description": "Aprèn tècniques avançades de pintura a l'oli amb un expert.",
+      "creator": 1,
+      "category": "art",
+      "scheduled_date": "2025-11-25T18:00:00Z",
+      "status": "finished",
+      "max_viewers": 80,
+      "is_featured": false,
+      "created_at": "2025-11-01T09:00:00Z",
+      "updated_at": "2025-11-25T20:00:00Z",
+      "tags": "art, painting, oil, workshop",
+      "stream_url": "https://www.youtube.com/watch?v=lLWEXRAnQd0"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 8,
+    "fields": {
+      "title": "Presentació del Nou iPhone 18",
+      "description": "Segueix en directe la presentació dels nous dispositius d'Apple.",
+      "creator": 48,
+      "category": "technology",
+      "scheduled_date": "2025-09-12T19:00:00Z",
+      "status": "finished",
+      "max_viewers": 100000,
+      "is_featured": true,
+      "created_at": "2025-09-01T10:00:00Z",
+      "updated_at": "2025-09-12T21:00:00Z",
+      "tags": "apple, tech, iphone, keynote",
+      "stream_url": "https://www.youtube.com/watch?v=ZiP1l7jlIIA"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 9,
+    "fields": {
+      "title": "Monòlegs de Comèdia",
+      "description": "Una nit de rialles amb els millors còmics locals.",
+      "creator": 58,
+      "category": "entertainment",
+      "scheduled_date": "2025-12-03T21:00:00Z",
+      "status": "cancelled",
+      "max_viewers": 300,
+      "is_featured": false,
+      "created_at": "2025-11-29T12:00:00Z",
+      "updated_at": "2025-12-01T09:00:00Z",
+      "tags": "comedy, entertainment, standup",
+      "stream_url": "https://www.youtube.com/watch?v=R7YQeR_VqXI"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 10,
+    "fields": {
+      "title": "Curs de Cuina Italiana",
+      "description": "Aprèn a fer pasta fresca des de zero.",
+      "creator": 1,
+      "category": "other",
+      "scheduled_date": "2025-12-08T11:00:00Z",
+      "status": "scheduled",
+      "max_viewers": 150,
+      "is_featured": false,
+      "created_at": "2025-11-20T16:00:00Z",
+      "updated_at": "2025-11-20T16:00:00Z",
+      "tags": "cooking, food, italian, workshop",
+      "stream_url": "https://www.youtube.com/watch?v=n9rI90q6xPw"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 11,
+    "fields": {
+      "title": "Torneig de Valorant - Semifinals",
+      "description": "Els equips lluiten per un lloc a la final.",
+      "creator": 48,
+      "category": "gaming",
+      "scheduled_date": "2025-12-01T17:00:00Z",
+      "status": "live",
+      "max_viewers": 8000,
+      "is_featured": true,
+      "created_at": "2025-11-22T10:00:00Z",
+      "updated_at": "2025-12-01T17:00:00Z",
+      "tags": "valorant, esports, gaming, fps",
+      "stream_url": "https://www.youtube.com/watch?v=Kz6o0g9_G-I"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 12,
+    "fields": {
+      "title": "Sessió de Ioga al Matí",
+      "description": "Comença el dia amb energia i relaxació.",
+      "creator": 58,
+      "category": "sports",
+      "scheduled_date": "2025-12-04T08:00:00Z",
+      "status": "scheduled",
+      "max_viewers": 100,
+      "is_featured": false,
+      "created_at": "2025-11-30T18:00:00Z",
+      "updated_at": "2025-11-30T18:00:00Z",
+      "tags": "yoga, sports, health, wellness",
+      "stream_url": "https://www.youtube.com/watch?v=v7AYKMP6rOE"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 13,
+    "fields": {
+      "title": "Podcast: Històries de Por",
+      "description": "Relats terrorífics per no dormir.",
+      "creator": 1,
+      "category": "entertainment",
+      "scheduled_date": "2025-10-31T23:00:00Z",
+      "status": "finished",
+      "max_viewers": 666,
+      "is_featured": true,
+      "created_at": "2025-10-01T10:00:00Z",
+      "updated_at": "2025-11-01T01:00:00Z",
+      "tags": "horror, podcast, entertainment, halloween",
+      "stream_url": "https://www.youtube.com/watch?v=wz6Fv-kK58E"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 14,
+    "fields": {
+      "title": "Review de Gadgets 2025",
+      "description": "Analitzem els millors gadgets de l'any.",
+      "creator": 48,
+      "category": "technology",
+      "scheduled_date": "2025-12-15T18:00:00Z",
+      "status": "scheduled",
+      "max_viewers": 500,
+      "is_featured": false,
+      "created_at": "2025-11-15T11:00:00Z",
+      "updated_at": "2025-11-15T11:00:00Z",
+      "tags": "tech, gadgets, review, 2025",
+      "stream_url": "https://www.youtube.com/watch?v=U7l6tG-jYlQ"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 15,
+    "fields": {
+      "title": "Festival de Música Indie",
+      "description": "Grups emergents tocant en directe.",
+      "creator": 58,
+      "category": "music",
+      "scheduled_date": "2025-12-20T19:00:00Z",
+      "status": "scheduled",
+      "max_viewers": 1200,
+      "is_featured": true,
+      "created_at": "2025-11-10T10:00:00Z",
+      "updated_at": "2025-11-10T10:00:00Z",
+      "tags": "indie, music, festival, live",
+      "stream_url": "https://www.youtube.com/watch?v=IDzqIyG8nC0"
+    }
+  }
+]

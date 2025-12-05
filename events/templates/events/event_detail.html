@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ event.title }} - StreamEvents{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card mb-4 shadow-sm">
+            {% if event.stream_url and event.is_live or event.stream_url and event.is_finished %}
+            <div class="ratio ratio-16x9">
+                {% with embed_url=event.get_stream_embed_url %}
+                {% if 'youtube' in embed_url or 'youtu.be' in embed_url %}
+                <iframe src="{{ embed_url }}" title="{{ event.title }}" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                {% else %}
+                <iframe src="{{ embed_url }}" title="{{ event.title }}" frameborder="0" allowfullscreen></iframe>
+                {% endif %}
+                {% endwith %}
+            </div>
+            {% elif event.thumbnail %}
+            <img src="{{ event.thumbnail.url }}" class="card-img-top" alt="{{ event.title }}"
+                style="max-height: 500px; object-fit: cover;">
+            {% else %}
+            <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center text-white"
+                style="height: 400px;">
+                <span class="fs-1">📷 Sense Imatge</span>
+            </div>
+            {% endif %}
+
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h1 class="card-title mb-0">{{ event.title }}</h1>
+                    {% if event.is_live %}
+                    <span class="badge bg-danger fs-6 animate-pulse">🔴 EN DIRECTE</span>
+                    {% elif event.status == 'scheduled' %}
+                    <span class="badge bg-success fs-6">📅 Programat</span>
+                    {% elif event.status == 'finished' %}
+                    <span class="badge bg-secondary fs-6">🏁 Finalitzat</span>
+                    {% else %}
+                    <span class="badge bg-dark fs-6">❌ Cancel·lat</span>
+                    {% endif %}
+                </div>
+
+                <div class="mb-4">
+                    <span class="badge bg-primary me-2">{{ event.get_category_display }}</span>
+                    {% for tag in event.get_tags_list %}
+                    <span class="badge bg-light text-dark border me-1">#{{ tag }}</span>
+                    {% endfor %}
+                </div>
+
+                <div class="prose">
+                    {{ event.description|linebreaks }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-white">
+                <h5 class="mb-0">Detalls de l'Esdeveniment</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-calendar3 me-2"></i> Data</span>
+                    <strong>{{ event.scheduled_date|date:"d M Y" }}</strong>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-clock me-2"></i> Hora</span>
+                    <strong>{{ event.scheduled_date|date:"H:i" }}</strong>
+                </li>
+
+                {% if event.is_finished and event.duration %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-stopwatch me-2"></i> Durada</span>
+                    <strong>{{ event.duration }}</strong>
+                </li>
+                {% endif %}
+
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-people me-2"></i> Aforament</span>
+                    <strong>{{ event.max_viewers }} espectadors</strong>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-white">
+                <h5 class="mb-0">Organitzador</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                        style="width: 50px; height: 50px; font-size: 1.5rem;">
+                        {{ event.creator.username|first|upper }}
+                    </div>
+                    <div>
+                        <h6 class="mb-0">{{ event.creator.username }}</h6>
+                        <small class="text-muted">Creat el {{ event.created_at|date:"d/m/Y" }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if user == event.creator %}
+        <div class="card mb-4 border-primary">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Gestió</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="{% url 'events:event_update' event.pk %}" class="btn btn-outline-primary">
+                        <i class="bi bi-pencil"></i> Editar Esdeveniment
+                    </a>
+                    <a href="{% url 'events:event_delete' event.pk %}" class="btn btn-outline-danger">
+                        <i class="bi bi-trash"></i> Eliminar Esdeveniment
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
